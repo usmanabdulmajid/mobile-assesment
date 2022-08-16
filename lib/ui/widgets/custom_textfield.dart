@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_assesment/utils/constants.dart';
-import 'package:mobile_assesment/utils/extensions.dart';
 import 'package:mobile_assesment/utils/spacing.dart';
 
 class CustomTextfield extends StatefulWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_assesment/ui/widgets/border_button.dart';
 import 'package:mobile_assesment/ui/widgets/custom_textfield.dart';
+import 'package:mobile_assesment/utils/alert.dart';
 import 'package:mobile_assesment/utils/constants.dart';
 import 'package:mobile_assesment/utils/extensions.dart';
 import 'package:mobile_assesment/utils/spacing.dart';
@@ -93,7 +94,11 @@ class NewPasswordScreen extends StatelessWidget with Validator {
                   BorderButton(
                     label: 'Save',
                     onTap: () {
-                      if (_formkey.currentState!.validate()) {}
+                      if (_formkey.currentState!.validate()) {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        Alert.showFlushbar(context,
+                            text: 'Reset password successful');
+                      }
                     },
                   ),
                 ],

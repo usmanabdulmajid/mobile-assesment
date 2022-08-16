@@ -93,6 +93,7 @@ class ForgotPasswordScreen extends StatelessWidget with Validator {
                         label: 'Next',
                         onTap: () {
                           if (_formkey.currentState!.validate()) {
+                            FocusManager.instance.primaryFocus?.unfocus();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
