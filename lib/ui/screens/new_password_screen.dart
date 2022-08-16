@@ -4,9 +4,12 @@ import 'package:mobile_assesment/ui/widgets/custom_textfield.dart';
 import 'package:mobile_assesment/utils/constants.dart';
 import 'package:mobile_assesment/utils/extensions.dart';
 import 'package:mobile_assesment/utils/spacing.dart';
+import 'package:mobile_assesment/utils/validator.dart';
 
-class NewPasswordScreen extends StatelessWidget {
+class NewPasswordScreen extends StatelessWidget with Validator {
   const NewPasswordScreen({Key? key}) : super(key: key);
+  static final _formkey = GlobalKey<FormState>();
+  static final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,19 +61,43 @@ class NewPasswordScreen extends StatelessWidget {
             ],
           ),
           const YMargin(kLargespace),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kmediumspace),
-            child: Column(
-              children: [
-                const CustomTextfield(label: 'Enter New Password'),
-                const YMargin(kspace),
-                const CustomTextfield(label: 'Confirm Password'),
-                const YMargin(kxtralargespace),
-                BorderButton(
-                  label: 'Save',
-                  onTap: () {},
-                ),
-              ],
+          Form(
+            key: _formkey,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kmediumspace),
+              child: Column(
+                children: [
+                  CustomTextfield(
+                    label: 'Enter New Password',
+                    password: true,
+                    textInputType: TextInputType.visiblePassword,
+                    controller: _passwordController,
+                    validator: validatePassword,
+                  ),
+                  const YMargin(kspace),
+                  CustomTextfield(
+                    label: 'Confirm Password',
+                    password: true,
+                    textInputType: TextInputType.visiblePassword,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Field can\'t be empty';
+                      }
+                      if (_passwordController.text != value) {
+                        return 'Password doesn\'t match';
+                      }
+                      return null;
+                    },
+                  ),
+                  const YMargin(kxtralargespace),
+                  BorderButton(
+                    label: 'Save',
+                    onTap: () {
+                      if (_formkey.currentState!.validate()) {}
+                    },
+                  ),
+                ],
+              ),
             ),
           )
         ],

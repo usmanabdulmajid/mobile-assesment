@@ -66,7 +66,6 @@ class _AuthScreenState extends State<AuthScreen> {
                               blurRadius: 4,
                             ),
                           ]),
-                      //alignment: Alignment.bottomCenter,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -108,7 +107,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ],
               ),
-              const YMargin(kLargespace),
+              const YMargin(kmediumspace),
               Padding(
                 padding: const EdgeInsets.only(left: kmediumspace),
                 child: SizedBox(
@@ -183,7 +182,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
               ),
-              const YMargin(kLargespace),
+              const YMargin(kmediumspace),
               Expanded(
                 child: IndexedStack(
                   index: authIndex,

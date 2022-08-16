@@ -5,9 +5,11 @@ import 'package:mobile_assesment/ui/widgets/custom_textfield.dart';
 import 'package:mobile_assesment/utils/constants.dart';
 import 'package:mobile_assesment/utils/extensions.dart';
 import 'package:mobile_assesment/utils/spacing.dart';
+import 'package:mobile_assesment/utils/validator.dart';
 
-class ForgotPasswordScreen extends StatelessWidget {
+class ForgotPasswordScreen extends StatelessWidget with Validator {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
+  static final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -65,32 +67,41 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ],
               ),
               const YMargin(kLargespace),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kmediumspace),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Reset \npassword',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
+              Form(
+                key: _formkey,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: kmediumspace),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Reset \npassword',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    const YMargin(kLargespace),
-                    const CustomTextfield(label: 'Email'),
-                    const YMargin(kxtralargespace),
-                    BorderButton(
-                      label: 'Next',
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const VerifyOtpScreen()));
-                      },
-                    ),
-                  ],
+                      const YMargin(kLargespace),
+                      CustomTextfield(
+                        label: 'Email',
+                        textInputType: TextInputType.emailAddress,
+                        validator: validateEmail,
+                      ),
+                      const YMargin(kxtralargespace),
+                      BorderButton(
+                        label: 'Next',
+                        onTap: () {
+                          if (_formkey.currentState!.validate()) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const VerifyOtpScreen()));
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
