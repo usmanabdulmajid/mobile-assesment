@@ -4,9 +4,9 @@ import 'package:mobile_assesment/ui/widgets/custom_textfield.dart';
 import 'package:mobile_assesment/utils/constants.dart';
 import 'package:mobile_assesment/utils/spacing.dart';
 
-class SignupView extends StatelessWidget {
+class LoginView extends StatelessWidget {
   final Function(int) onChanged;
-  const SignupView({Key? key, required this.onChanged}) : super(key: key);
+  const LoginView({Key? key, required this.onChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +14,9 @@ class SignupView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kmediumspace),
       child: Column(
         children: [
-          const CustomTextfield(label: 'Full Name'),
-          const YMargin(ksmallspace),
           const CustomTextfield(label: 'Email'),
           const YMargin(ksmallspace),
           const CustomTextfield(label: 'Password'),
-          const YMargin(ksmallspace),
-          const CustomTextfield(label: 'Confirm Password'),
           const YMargin(ksmallspace),
           Align(
             alignment: Alignment.centerRight,
@@ -35,16 +31,16 @@ class SignupView extends StatelessWidget {
           ),
           const YMargin(kspace),
           BorderButton(
-            label: 'Register',
+            label: 'Login',
             onTap: () {},
           ),
           const YMargin(kspace),
           GestureDetector(
             onTap: () {
-              onChanged.call(0);
+              onChanged.call(1);
             },
             child: const Text(
-              'Already have an account? Login',
+              'Don\'t have an account? Create',
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
           )

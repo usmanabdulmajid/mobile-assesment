@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_assesment/ui/screens/login_view.dart';
 import 'package:mobile_assesment/ui/screens/signup_view.dart';
 import 'package:mobile_assesment/ui/widgets/custom_textfield.dart';
 import 'package:mobile_assesment/utils/constants.dart';
@@ -188,11 +189,21 @@ class _AuthScreenState extends State<AuthScreen> {
               Expanded(
                 child: IndexedStack(
                   index: authIndex,
-                  children: const [
-                    Center(
-                      child: Text('Login'),
+                  children: [
+                    LoginView(
+                      onChanged: (index) {
+                        setState(() {
+                          authIndex = index;
+                        });
+                      },
                     ),
-                    SignupView(),
+                    SignupView(
+                      onChanged: (index) {
+                        setState(() {
+                          authIndex = index;
+                        });
+                      },
+                    ),
                   ],
                 ),
               )
