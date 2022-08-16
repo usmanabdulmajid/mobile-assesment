@@ -10,7 +10,7 @@ class CustomTextfield extends StatelessWidget {
   const CustomTextfield(
       {Key? key, required this.label, this.labelColor, this.controller})
       : super(key: key);
-  Color get _labelColor => labelColor ?? const Color(0xffF84E69);
+  Color get _labelColor => labelColor ?? const Color(0xffFF647C);
   @override
   Widget build(BuildContext context) {
     return Column(

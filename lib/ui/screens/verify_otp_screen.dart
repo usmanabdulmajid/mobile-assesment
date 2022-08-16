@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mobile_assesment/ui/screens/new_password_screen.dart';
 import 'package:mobile_assesment/utils/constants.dart';
 import 'package:mobile_assesment/utils/extensions.dart';
 import 'package:mobile_assesment/utils/spacing.dart';
@@ -136,38 +137,37 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 const YMargin(ksmallspace),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                      _timercompleted
-                          ? 'Code Expired'
-                          : '00:${_duration.inSeconds}',
-                      style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white)),
+                  child: _timercompleted
+                      ? GestureDetector(
+                          onTap: () {
+                            if (_timercompleted) {
+                              startTimer();
+                            }
+                          },
+                          child: const Text(
+                            'Resend Code',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xffFF647C)),
+                          ),
+                        )
+                      : Text('00:${_duration.inSeconds}',
+                          style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white)),
                 ),
                 const YMargin(kspace),
-                Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      if (_timercompleted) {
-                        startTimer();
-                      }
-                    },
-                    child: Text(
-                      'Resend Code',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: _timercompleted
-                              ? const Color(0xffFF647C)
-                              : const Color(0xffFF647C).withOpacity(0.5)),
-                    ),
-                  ),
-                ),
                 const YMargin(kLargespace),
                 GestureDetector(
                   onTap: () {
-                    //Navigator.pushReplacementNamed(context, AppRoute.regsuccessroute);
+                    if (_timercompleted) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const NewPasswordScreen()));
+                    }
                   },
                   child: Center(
                     child: Container(
@@ -175,15 +175,17 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       width: 59,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: const Color(0xffFF647C),
+                        color: _timercompleted
+                            ? const Color(0xffFF647C)
+                            : const Color(0xffFF647C).withOpacity(0.5),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: Colors.black.withOpacity(0.2),
                             offset: const Offset(0, -2),
                             blurRadius: 4,
                           ),
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: Colors.black.withOpacity(0.2),
                             offset: const Offset(0, 2),
                             blurRadius: 4,
                           ),
