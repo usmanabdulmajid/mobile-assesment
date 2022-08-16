@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_assesment/ui/screens/forgot_password_screen.dart';
 import 'package:mobile_assesment/ui/widgets/border_button.dart';
 import 'package:mobile_assesment/ui/widgets/custom_textfield.dart';
 import 'package:mobile_assesment/utils/constants.dart';
@@ -21,7 +22,12 @@ class LoginView extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const ForgotPasswordScreen()));
+              },
               style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(
                 const Color(0xffF84E69),

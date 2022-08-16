@@ -5,10 +5,12 @@ import 'package:mobile_assesment/utils/spacing.dart';
 
 class CustomTextfield extends StatelessWidget {
   final String label;
+  final Color? labelColor;
   final TextEditingController? controller;
-  const CustomTextfield({Key? key, required this.label, this.controller})
+  const CustomTextfield(
+      {Key? key, required this.label, this.labelColor, this.controller})
       : super(key: key);
-
+  Color get _labelColor => labelColor ?? const Color(0xffF84E69);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,8 +18,8 @@ class CustomTextfield extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
-            color: Color(0xffF84E69),
+          style: TextStyle(
+            color: _labelColor,
           ),
         ),
         const YMargin(ksmallspace),

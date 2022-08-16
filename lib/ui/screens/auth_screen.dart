@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_assesment/ui/screens/login_view.dart';
 import 'package:mobile_assesment/ui/screens/signup_view.dart';
-import 'package:mobile_assesment/ui/widgets/custom_textfield.dart';
 import 'package:mobile_assesment/utils/constants.dart';
 import 'package:mobile_assesment/utils/extensions.dart';
 import 'package:mobile_assesment/utils/spacing.dart';
@@ -20,7 +19,6 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     final left = ((context.height * 0.3) - (context.width) / 2);
     return Scaffold(
-      backgroundColor: const Color(0xff3D3D3D),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_assesment/ui/screens/auth_screen.dart';
+import 'package:mobile_assesment/ui/screens/forgot_password_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.pink,
+        scaffoldBackgroundColor: const Color(0xff3D3D3D),
       ),
       home: const AuthScreen(),
     );

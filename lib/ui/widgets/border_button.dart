@@ -19,7 +19,7 @@ class BorderButton extends StatelessWidget {
       height: 50,
       child: TextButton(
         style: ButtonStyle(
-          elevation: MaterialStateProperty.all<double>(8),
+          elevation: MaterialStateProperty.all<double>(4),
           shadowColor:
               MaterialStateProperty.all<Color>(const Color(0xffF84E69)),
           backgroundColor:
