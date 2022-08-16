@@ -51,6 +51,14 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     });
   }
 
+  void resetTimer() {
+    setState(() {
+      _timer.cancel();
+      _timercompleted = true;
+      _duration = const Duration(seconds: 60);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,9 +122,14 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 PinCodeTextField(
                   appContext: context,
                   length: 5,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    if (value.length == 5) {
+                      resetTimer();
+                    }
+                  },
                   autoDismissKeyboard: true,
                   textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.number,
                   obscureText: true,
                   obscuringCharacter: '✻',
                   textStyle: const TextStyle(color: Colors.white),
@@ -135,28 +148,31 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   ),
                 ),
                 const YMargin(ksmallspace),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: _timercompleted
-                      ? GestureDetector(
-                          onTap: () {
-                            if (_timercompleted) {
-                              startTimer();
-                            }
-                          },
-                          child: const Text(
-                            'Resend Code',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xffFF647C)),
-                          ),
-                        )
-                      : Text('00:${_duration.inSeconds}',
-                          style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white)),
+                SizedBox(
+                  height: kmediumspace,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: _timercompleted
+                        ? GestureDetector(
+                            onTap: () {
+                              if (_timercompleted) {
+                                startTimer();
+                              }
+                            },
+                            child: const Text(
+                              'Resend Code',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xffFF647C)),
+                            ),
+                          )
+                        : Text('00:${_duration.inSeconds}',
+                            style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white)),
+                  ),
                 ),
                 const YMargin(kspace),
                 const YMargin(kLargespace),
@@ -192,10 +208,12 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                         ],
                       ),
                       alignment: Alignment.center,
-                      child: const Icon(
+                      child: Icon(
                         Icons.arrow_forward,
                         size: 30,
-                        color: Colors.white,
+                        color: _timercompleted
+                            ? Colors.white
+                            : Colors.white.withOpacity(0.5),
                       ),
                     ),
                   ),

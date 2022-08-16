@@ -112,7 +112,7 @@ class _AuthScreenState extends State<AuthScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: kmediumspace),
                 child: SizedBox(
-                  width: context.width * 0.3,
+                  width: context.width * 0.4,
                   child: Column(
                     children: [
                       Row(
@@ -152,7 +152,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       Stack(
                         children: [
                           Container(
-                            width: (context.width * 0.3),
+                            width: (context.width * 0.4),
                             height: 3,
                             decoration: BoxDecoration(
                               borderRadius:
@@ -164,7 +164,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             children: List.generate(
                               2,
                               (index) => AnimatedContainer(
-                                width: (context.width * 0.3) / 2,
+                                width: (context.width * 0.4) / 2,
                                 height: 3,
                                 duration: const Duration(milliseconds: 300),
                                 decoration: BoxDecoration(

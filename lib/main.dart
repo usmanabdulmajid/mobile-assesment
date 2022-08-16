@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.pink,
+        fontFamily: 'RobotoMono',
         scaffoldBackgroundColor: const Color(0xff3D3D3D),
       ),
       home: const AuthScreen(),
