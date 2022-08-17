@@ -1,9 +1,9 @@
 class Validator {
-  String? validateEmail(String? value) {
-    if (value!.isEmpty) {
+  String? validateEmail(String? email) {
+    if (email!.isEmpty) {
       return ('Email can\'t be empty');
     }
-    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(email)) {
       return 'Enter a valid email';
     }
     return null;
@@ -14,7 +14,7 @@ class Validator {
       return 'Password can\'t be empty';
     }
     if (password.length < 7) {
-      return 'Enter valid password(min. 6 Character)';
+      return 'Enter valid password(min. 7 Character)';
     }
     return null;
   }

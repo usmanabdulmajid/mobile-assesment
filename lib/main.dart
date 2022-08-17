@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mobile_assesment/ui/screens/auth_screen.dart';
 
 void main() {
@@ -19,6 +20,14 @@ class MyApp extends StatelessWidget {
         fontFamily: 'RobotoMono',
         scaffoldBackgroundColor: const Color(0xff3D3D3D),
       ),
+      builder: (context, child) {
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+          ),
+          child: child!,
+        );
+      },
       home: const AuthScreen(),
     );
   }
